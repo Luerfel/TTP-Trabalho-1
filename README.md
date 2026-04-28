@@ -1,31 +1,110 @@
-
 # Sistema Acadêmico em Prolog
 
 Projeto desenvolvido para a disciplina **Tópicos em Tecnologia e Programação**, do curso de **Engenharia de Software**, com o objetivo de implementar um sistema acadêmico simples utilizando **Prolog**.
 
-O sistema trabalha com uma base de conhecimento composta por cursos, matérias, currículos, alunos, cursos frequentados e históricos escolares, permitindo consultar a situação acadêmica de um aluno em relação à conclusão de determinado curso.
+O sistema utiliza uma base de conhecimento com informações sobre cursos, matérias, currículos, alunos e históricos escolares, permitindo realizar consultas sobre a situação acadêmica dos alunos.
 
-## Objetivo do Trabalho
+## Tecnologias Utilizadas
 
-O objetivo principal é criar cláusulas em Prolog capazes de responder consultas acadêmicas, como:
+* Prolog
+* SWI-Prolog
 
-- Verificar se um aluno concluiu determinado curso;
-- Listar as matérias obrigatórias que ainda faltam para a conclusão do curso;
-- Listar matérias extracurriculares cursadas pelo aluno;
-- Calcular o percentual de matérias obrigatórias já concluídas pelo aluno.
+## Instalação do SWI-Prolog
 
-O trabalho segue as especificações apresentadas no enunciado da disciplina. 
+### Linux/Ubuntu
 
-## Base de Conhecimento
+```bash
+sudo apt update
+sudo apt install swi-prolog
+```
 
-A base de conhecimento utiliza os seguintes predicados principais:
+Para verificar a instalação:
 
-### `curso(CodigoCurso, NomeCurso).`
+```bash
+swipl --version
+```
 
-Representa um curso existente.
+### Windows
 
-Exemplo:
+Baixe o instalador pelo site oficial do SWI-Prolog:
+
+```text
+https://www.swi-prolog.org/Download.html
+```
+
+Após instalar, abra o SWI-Prolog pelo menu iniciar ou execute `swipl` no terminal.
+
+## Estrutura do Projeto
+
+```text
+conhecimento.pl
+regras.pl
+teste_exercicio1.pl
+```
+
+### `conhecimento.pl`
+
+Contém a base de conhecimento do sistema, isto é, os fatos utilizados pelo programa.
+
+Exemplos de informações armazenadas:
+
+* cursos;
+* matérias;
+* currículos;
+* alunos;
+* vínculo entre aluno e curso;
+* histórico escolar dos alunos.
+
+### `regras.pl`
+
+Contém as regras em Prolog responsáveis por realizar as consultas acadêmicas a partir da base de conhecimento.
+
+Esse arquivo carrega automaticamente o `conhecimento.pl`.
+
+### `teste_exercicio1.pl`
+
+Contém testes automáticos para verificar se as regras principais estão funcionando corretamente.
+
+## Como Executar
+
+No terminal, acesse a pasta do projeto e abra o SWI-Prolog:
+
+```bash
+swipl
+```
+
+Depois, carregue o arquivo principal:
 
 ```prolog
-curso(1, informatica).
-curso(2, eletro_eletronica).
+?- [regras].
+```
+
+Para executar os testes:
+
+```prolog
+?- [teste_exercicio1].
+?- rodar.
+```
+
+## Consultas Gerais
+
+O sistema permite consultar, de forma geral:
+
+* se um aluno concluiu determinado curso;
+* quais matérias ainda faltam para concluir o curso;
+* quais matérias extracurriculares foram cursadas;
+* qual percentual do curso já foi cumprido.
+
+## Organização
+
+O projeto foi separado em arquivos para facilitar a manutenção e a apresentação:
+
+* `conhecimento.pl`: fatos do sistema;
+* `regras.pl`: regras lógicas;
+* `teste_exercicio1.pl`: testes de funcionamento.
+
+## Autores
+
+* Matheus Augusto Mendonça 22011027
+* Beatriz Kamien Tehzy  25007147
+* Bernado
