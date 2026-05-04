@@ -107,4 +107,4 @@ O projeto foi separado em arquivos para facilitar a manutenção e a apresentaç
 
 * Matheus Augusto Mendonça 22011027
 * Beatriz Kamien Tehzy  25007147
-* Bernado
+* Bernado Alberto Amaro 25014832
