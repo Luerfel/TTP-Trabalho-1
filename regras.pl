@@ -97,3 +97,20 @@ extrai_faltantes(RA, [CM|R], [NM|ListaFaltantes]) :-
     not(aprovado(RA, CM)),
     materia(CM, NM, _AM),
     extrai_faltantes(RA, R, ListaFaltantes).
+
+% Regra principal do item 3
+extra(RA, CC, Lista):-
+    historico(RA, Hist),
+    curriculo(CC, Materias),
+    extras(Hist, Materias, Lista).
+
+extras([], _, []).
+
+extras([item(CM, _SM, _AN, _NT, _FQ)|R], Materias, Lista):-
+    pertence(CM, Materias),
+    extras(R, Materias, Lista).
+
+extras([item(CM, _SM, _AN, _NT, _FQ)|R], Materias, [NM|Lista]):-
+    not(pertence(CM, Materias)),
+    materia(CM, NM, _AM),
+    extras(R, Materias, Lista).
