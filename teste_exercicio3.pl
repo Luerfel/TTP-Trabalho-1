@@ -52,7 +52,7 @@ testes_extra :-
         []
     ).
 
-% Executa os testes
+% Executando os testes
 
 rodar :-
     nl,
