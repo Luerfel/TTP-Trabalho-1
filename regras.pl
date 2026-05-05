@@ -79,38 +79,3 @@ tamanho([], 0).
 tamanho([_|R], T):-
     tamanho(R, TR),
     T is TR + 1.
-
-% Regra principal item 2
-falta(RA, CC, ListaFaltantes) :-
-    curriculo(CC, Materias),
-    extrai_faltantes(RA, Materias, ListaFaltantes).
-
-extrai_faltantes(_, [], []).
-
-% Caso 1: O aluno já está aprovado
-extrai_faltantes(RA, [CM|R], ListaFaltantes) :-
-    aprovado(RA, CM),
-    extrai_faltantes(RA, R, ListaFaltantes).
-
-% Caso 2: O aluno não está aprovado
-extrai_faltantes(RA, [CM|R], [NM|ListaFaltantes]) :-
-    not(aprovado(RA, CM)),
-    materia(CM, NM, _AM),
-    extrai_faltantes(RA, R, ListaFaltantes).
-
-% Regra principal do item 3
-extra(RA, CC, Lista):-
-    historico(RA, Hist),
-    curriculo(CC, Materias),
-    extras(Hist, Materias, Lista).
-
-extras([], _, []).
-
-extras([item(CM, _SM, _AN, _NT, _FQ)|R], Materias, Lista):-
-    pertence(CM, Materias),
-    extras(R, Materias, Lista).
-
-extras([item(CM, _SM, _AN, _NT, _FQ)|R], Materias, [NM|Lista]):-
-    not(pertence(CM, Materias)),
-    materia(CM, NM, _AM),
-    extras(R, Materias, Lista).
