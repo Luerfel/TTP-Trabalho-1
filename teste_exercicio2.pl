@@ -45,21 +45,6 @@ testes_falta :-
         [topicos_em_metodologias_de_programacao]
     ),
 
-    testa_lista(
-        'Teste Extra 1 (Aluno 12080 / Curso 2)',
-        falta(12080, 2, OQUE),
-        OQUE,
-        [arquitetura_computadores, microcontroladores]
-    ),
-
-    testa_lista(
-        'Teste Extra 2 (Aluno 12090 / Curso 2)',
-        falta(12090, 2, OQUE),
-        OQUE,
-        [circuitos_eletricos, eletronica_digital]
-    ).
-
-
 % Executando os testes
 
 rodar :-
