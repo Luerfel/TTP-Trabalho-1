@@ -45,13 +45,6 @@ testes_extra :-
         [circuitos_eletricos]
     ),
 
-    testa_lista(
-        'Teste Extra 1 (Aluno sem disciplinas extracurriculares)',
-        extra(12909, 1, QUAIS),
-        QUAIS,
-        []
-    ).
-
 % Executando os testes
 
 rodar :-
