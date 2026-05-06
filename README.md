@@ -37,33 +37,15 @@ Após instalar, abra o SWI-Prolog pelo menu iniciar ou execute `swipl` no termin
 ## Estrutura do Projeto
 
 ```text
-conhecimento.pl
-regras.pl
-teste_exercicio1.pl
+sistema_academico.pl
 ```
 
-### `conhecimento.pl`
+O projeto foi consolidado em um único arquivo para facilitar a apresentação e a entrega. Internamente, o arquivo é dividido em seções comentadas:
 
-Contém a base de conhecimento do sistema, isto é, os fatos utilizados pelo programa.
-
-Exemplos de informações armazenadas:
-
-* cursos;
-* matérias;
-* currículos;
-* alunos;
-* vínculo entre aluno e curso;
-* histórico escolar dos alunos.
-
-### `regras.pl`
-
-Contém as regras em Prolog responsáveis por realizar as consultas acadêmicas a partir da base de conhecimento.
-
-Esse arquivo carrega automaticamente o `conhecimento.pl`.
-
-### `teste_exercicio1.pl`
-
-Contém testes automáticos para verificar se as regras principais estão funcionando corretamente.
+* **Base de Conhecimento**: fatos do sistema (cursos, matérias, currículos, alunos, matrículas e históricos escolares);
+* **Regras**: predicados que respondem às quatro questões pedidas no enunciado (`concluiu`, `falta`, `extra` e `jafoi`), além do predicado base `aprovado`;
+* **Predicados Auxiliares**: implementações próprias de `pertence` e `tamanho`, equivalentes ao `member` e ao `length` do Prolog padrão (o enunciado pede o uso apenas de predicados primitivos);
+* **Exemplos de Uso**: queries de teste comentadas no final do arquivo.
 
 ## Como Executar
 
@@ -73,38 +55,63 @@ No terminal, acesse a pasta do projeto e abra o SWI-Prolog:
 swipl
 ```
 
-Depois, carregue o arquivo principal:
+Depois, carregue o arquivo:
 
 ```prolog
-?- [regras].
+?- [sistema_academico].
 ```
 
-Para executar os testes:
+## Consultas Disponíveis
+
+O sistema permite as seguintes consultas:
+
+### `concluiu(RA, CC)`
+
+Verifica se o aluno de RA informado concluiu o curso de código indicado.
 
 ```prolog
-?- [teste_exercicio1].
-?- rodar.
+?- concluiu(12909, 1).
+false.
 ```
 
-## Consultas Gerais
+### `falta(RA, CC, Lista)`
 
-O sistema permite consultar, de forma geral:
+Retorna em `Lista` os nomes das matérias que ainda faltam para o aluno concluir o curso.
 
-* se um aluno concluiu determinado curso;
-* quais matérias ainda faltam para concluir o curso;
-* quais matérias extracurriculares foram cursadas;
-* qual percentual do curso já foi cumprido.
+```prolog
+?- falta(12909, 1, OQUE).
+OQUE = [topicos_em_metodologias_de_programacao].
+```
 
-## Organização
+### `extra(RA, CC, Lista)`
 
-O projeto foi separado em arquivos para facilitar a manutenção e a apresentação:
+Retorna em `Lista` os nomes das matérias extracurriculares cursadas pelo aluno (matérias presentes no histórico mas que não fazem parte do currículo do curso informado).
 
-* `conhecimento.pl`: fatos do sistema;
-* `regras.pl`: regras lógicas;
-* `teste_exercicio1.pl`: testes de funcionamento.
+```prolog
+?- extra(12808, 1, QUAIS).
+QUAIS = [circuitos_eletricos].
+```
+
+### `jafoi(CC, RA, Percentual)`
+
+Calcula o percentual do currículo do curso que o aluno já cumpriu, considerando apenas matérias obrigatórias.
+
+```prolog
+?- jafoi(1, 12909, QUANTO).
+QUANTO = 75.0.
+```
+
+### `aprovado(RA, CM)`
+
+Predicado auxiliar que verifica se um aluno foi aprovado em uma determinada matéria. Considera aprovado quem cursou a matéria com nota maior ou igual a 5.0 e frequência maior ou igual a 0.75.
+
+```prolog
+?- aprovado(12909, 2).
+true.
+```
 
 ## Autores
 
-* Matheus Augusto Mendonça 22011027
 * Beatriz Kamien Tehzy  25007147
 * Bernado Alberto Amaro 25014832
+* Matheus Augusto Mendonça 22011027
